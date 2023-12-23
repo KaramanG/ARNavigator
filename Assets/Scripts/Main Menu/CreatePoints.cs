@@ -12,6 +12,8 @@ public class CreatePoints : MonoBehaviour
     [SerializeField] private Transform userPos;
     [SerializeField] private NumpadScript numpadScript;
 
+    [SerializeField] private StartMenuScript startMenuScript;
+
     private void Start()
     {
         addPointsMenu.SetActive(false);
@@ -24,7 +26,7 @@ public class CreatePoints : MonoBehaviour
         {
             NavPoint newNavPoint = new NavPoint();
             newNavPoint.Name = numpadScript.GetCurrentString();
-            newNavPoint.Position = userPos.position;
+            newNavPoint.Position = userPos.position - startMenuScript.cameraOffset;
 
             if (!isCustom)
             {
