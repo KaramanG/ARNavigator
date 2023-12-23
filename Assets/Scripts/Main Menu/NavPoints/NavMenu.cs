@@ -1,5 +1,6 @@
 using Microsoft.MixedReality.Toolkit.Utilities;
 using System.Collections;
+using UnityEditor.XR.LegacyInputHelpers;
 using UnityEngine;
 
 public class NavMenu : MonoBehaviour
@@ -25,6 +26,8 @@ public class NavMenu : MonoBehaviour
     private string navPointPreviewTag = "NavPointPreview";
 
     public bool isPreviewModeActive;
+
+    [SerializeField] private StartMenuScript startMenuScript;
 
     private void Start()
     {
@@ -75,7 +78,7 @@ public class NavMenu : MonoBehaviour
                     buttonScript.Initialize(navPoint);
                 }
 
-                buttonScript.OnButtonClicked += () => navCreator.ProccessNavPath(navPoint);  
+                buttonScript.OnButtonClicked += () => navCreator.ProccessNavPath(navPoint, startMenuScript.cameraOffset);  
             }
         }
     }
@@ -121,7 +124,7 @@ public class NavMenu : MonoBehaviour
         if (isPreviewModeActive)
         {
             GameObject currentNavPointPreview = Instantiate(navPointPreviewPrefab, rootPreviewHandler);
-            currentNavPointPreview.transform.position = navPoint.Position;
+            currentNavPointPreview.transform.position = navPoint.Position + startMenuScript.cameraOffset;
 
             PreviewScript previewScript = currentNavPointPreview.GetComponent<PreviewScript>();
             previewScript.changeText(navPoint.Name);

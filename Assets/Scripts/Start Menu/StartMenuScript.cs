@@ -6,6 +6,11 @@ public class StartMenuScript : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private NavMenu navMenu;
 
+    [SerializeField] private GameObject cameraObject;
+    public Vector3 cameraOffset;
+
+    [SerializeField] private GameObject floor;
+
     private void Start()
     {
         CloseMenu();
@@ -13,6 +18,9 @@ public class StartMenuScript : MonoBehaviour
 
     public void StartMenu()
     {
+        GetCameraOffset();
+        floor.transform.position += cameraOffset;
+
         mainMenu.transform.position = startMenu.transform.position;
         mainMenu.transform.rotation = startMenu.transform.rotation;
 
@@ -35,5 +43,10 @@ public class StartMenuScript : MonoBehaviour
     public void EndMenu()
     {
         Application.Quit();
+    }
+
+    private void GetCameraOffset()
+    {
+        cameraOffset = cameraObject.transform.position;
     }
 }

@@ -26,11 +26,11 @@ public class NavCreator : MonoBehaviour
         navCreatorMenu.SetActive(false);
     }
 
-    public void ProccessNavPath(NavPoint navPoint)
+    public void ProccessNavPath(NavPoint navPoint, Vector3 cameraOffset)
     {
         toggleNavCreator();
         
-        currentNavPoint = Instantiate(navPointPrefab, navPoint.Position, Quaternion.identity);
+        currentNavPoint = Instantiate(navPointPrefab, navPoint.Position + cameraOffset, Quaternion.identity);
     }
 
     private void FixedUpdate()
