@@ -107,6 +107,11 @@ public class StartMenuScript : MonoBehaviour
         }
     }
 
+    public void ToggleFloorCreation()
+    {
+        isFloorActive = !isFloorActive;
+    }
+
     public void DestroyFloor()
     {
         List<GameObject> tilesOnScene = GetFloorTiles();
