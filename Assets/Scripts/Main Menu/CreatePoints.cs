@@ -4,7 +4,6 @@ public class CreatePoints : MonoBehaviour
 {
     [SerializeField] private GameObject scrollMenu;
     [SerializeField] private GameObject addPointsMenu;
-    private bool addPointsMenuActive;
 
     [SerializeField] private NavPointConfig navPointConfig;
     [SerializeField] private NavPointConfig customNavPointConfig;
@@ -13,11 +12,11 @@ public class CreatePoints : MonoBehaviour
     [SerializeField] private NumpadScript numpadScript;
 
     [SerializeField] private StartMenuScript startMenuScript;
+    [SerializeField] private ChangeMenu changeMenu;
 
     private void Start()
     {
         addPointsMenu.SetActive(false);
-        addPointsMenuActive = false;
     }
 
     public void addPoint(bool isCustom)
@@ -25,33 +24,31 @@ public class CreatePoints : MonoBehaviour
         if (numpadScript.GetCurrentString().Length > 0)
         {
             NavPoint newNavPoint = new NavPoint();
-            newNavPoint.Name = numpadScript.GetCurrentString();
+            newNavPoint.Name = CapitalizeString(numpadScript.GetCurrentString());
             newNavPoint.Position = userPos.position - startMenuScript.cameraOffset;
 
-            if (!isCustom)
+            if (isCustom)
+            {
+                customNavPointConfig.NavPoints.Add(newNavPoint);
+            }
+            else
             {
                 navPointConfig.NavPoints.Add(newNavPoint);
-                return;
             }
-            customNavPointConfig.NavPoints.Add(newNavPoint);
+
+            numpadScript.ClearCurrentString();
+            changeMenu.EnableScrollMenu();
         }
     }
 
-    public void toggleAddPointMenu()
+    private string CapitalizeString(string s)
     {
-        if (!addPointsMenuActive)
+        if (s.Length > 0)
         {
-            addPointsMenuActive = true;
-
-            scrollMenu.SetActive(false);
-            addPointsMenu.SetActive(true);
-
-            return;
+            char[] letters = s.ToCharArray();
+            letters[0] = char.ToUpper(letters[0]);
+            return new string(letters);
         }
-
-        addPointsMenuActive = false;
-
-        scrollMenu.SetActive(true);
-        addPointsMenu.SetActive(false);
+        return s;
     }
 }

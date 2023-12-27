@@ -1,6 +1,5 @@
 using Microsoft.MixedReality.Toolkit.Utilities;
 using System.Collections;
-using UnityEditor.XR.LegacyInputHelpers;
 using UnityEngine;
 
 public class NavMenu : MonoBehaviour
@@ -8,7 +7,7 @@ public class NavMenu : MonoBehaviour
     [SerializeField] private NavPointConfig navPointConfig;
     [SerializeField] private NavPointConfig customNavPointConfig;
 
-    private bool isCustomNavPointsSelected;
+    public bool isCustomNavPointsSelected;
 
     [SerializeField] private GameObject buttonPrefab;
 

@@ -9,8 +9,8 @@ public class ArrowScript : MonoBehaviour
     private string navPointTag = "NavPoint";
     private GameObject currentNavPoint;
 
-    private float timer = 5f;
     private bool isActive;
+    private float minDistance = 0.33f;
 
     private void Awake()
     {
@@ -24,11 +24,11 @@ public class ArrowScript : MonoBehaviour
     {
         if (isActive)
         {
-            if (timer <= 0f)
+            if (Vector3.Distance(arrow.transform.position, currentNavPoint.transform.position) <= minDistance)
             {
                 Destroy(arrow);
             }
-            timer -= Time.fixedDeltaTime;
-        }    
+        }
     }
+
 }

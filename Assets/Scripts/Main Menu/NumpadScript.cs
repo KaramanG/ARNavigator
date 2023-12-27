@@ -50,6 +50,18 @@ public class NumpadScript : MonoBehaviour
 
     }
 
+    public string GetCurrentString()
+    {
+        return inputString.ToString();
+    }
+
+    public void ClearCurrentString()
+    {
+        inputString.Clear();
+        UpdateInputField();
+        navMenu.updateButtons();
+    }
+
     public void ToggleText()
     {
         if (!textFieldActive)
@@ -66,10 +78,5 @@ public class NumpadScript : MonoBehaviour
         keyboard.SetActive(false);
 
         MainMenuRadialView.MaxViewDegrees = viewDegreesNoText;
-    }
-
-    public string GetCurrentString()
-    {
-        return inputString.ToString();
     }
 }

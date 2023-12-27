@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quadIcons:
   - {fileID: 2800000, guid: 9a4597ec9cccdc94cb11fe5adbc1b98d, type: 3}
+  - {fileID: 2800000, guid: 0e64338cfbd024a478d3acdf74546e19, type: 3}
+  - {fileID: 2800000, guid: d19354b0ed738eb489c10dd4501cdfc4, type: 3}
   spriteIcons: []
   charIconFont: {fileID: 0}
   charIcons:
