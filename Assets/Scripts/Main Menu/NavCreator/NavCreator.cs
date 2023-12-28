@@ -38,6 +38,9 @@ public class NavCreator : MonoBehaviour
 
         currentNavPoint = Instantiate(navPointPrefab, navPoint.Position + cameraOffset, Quaternion.identity);
 
+        GameObject endTile = startMenuScript.GenerateGroundTile(navPoint.Position + cameraOffset);
+        endTile.transform.position = new Vector3(endTile.transform.position.x, startMenuScript.groundLevel, endTile.transform.position.z);
+
         userStartPos = startMenuScript.GetUserGroundPos();
         userStartPos.y += 0.05f;
     }

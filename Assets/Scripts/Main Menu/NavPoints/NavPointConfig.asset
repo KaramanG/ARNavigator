@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f6594eece8ac0479bacb058d3a6edf, type: 3}
   m_Name: NavPointConfig
   m_EditorClassIdentifier: 
-  NavPoints: []
+  NavPoints:
+  - Name: 111
+    Position: {x: 1.9900335, y: -0.022163972, z: 1.2765781}

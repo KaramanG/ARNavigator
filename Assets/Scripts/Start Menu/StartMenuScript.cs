@@ -18,7 +18,7 @@ public class StartMenuScript : MonoBehaviour
 
     private Vector3 oldPos = new Vector3(1000, 1000, 1000);
     public float minTileDistance = 0.5f;
-    private float groundLevel = -0.3f;
+    public float groundLevel = -0.3f;
     
     private void Start()
     {
