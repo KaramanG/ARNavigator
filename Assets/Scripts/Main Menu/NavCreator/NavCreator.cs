@@ -19,7 +19,7 @@ public class NavCreator : MonoBehaviour
     private bool navCreatorActive;
     private GameObject currentNavPoint;
     private Vector3 userStartPos = new Vector3();
-    private float minDistanceClose = 0.33f;
+    public float minDistanceClose = 0.6f;
 
     public float timer = 1.25f;
     private float currentTimer = 0f;
@@ -34,12 +34,16 @@ public class NavCreator : MonoBehaviour
     public void ProccessNavPath(NavPoint navPoint, Vector3 cameraOffset)
     {
         toggleNavCreator();
+
+        AstarData data = aStarPath.data;
+        GridGraph mainGraph = data.gridGraph;
+
+        Vector3 graphCenter = new Vector3(userPos.position.x, -1f, userPos.position.y);
+        mainGraph.center = graphCenter;
+
         aStarPath.Scan();
 
         currentNavPoint = Instantiate(navPointPrefab, navPoint.Position + cameraOffset, Quaternion.identity);
-
-        GameObject endTile = startMenuScript.GenerateGroundTile(navPoint.Position + cameraOffset);
-        endTile.transform.position = new Vector3(endTile.transform.position.x, startMenuScript.groundLevel, endTile.transform.position.z);
 
         userStartPos = startMenuScript.GetUserGroundPos();
         userStartPos.y += 0.05f;
@@ -97,6 +101,9 @@ public class NavCreator : MonoBehaviour
 
     public void refreshNavCreator()
     {
+        userStartPos = startMenuScript.GetUserGroundPos();
+        userStartPos.y += 0.05f;
+        aStarPath.Scan();
         resetArrows();
     }
 

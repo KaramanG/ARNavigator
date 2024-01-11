@@ -18,7 +18,7 @@ public class StartMenuScript : MonoBehaviour
 
     private Vector3 oldPos = new Vector3(1000, 1000, 1000);
     public float minTileDistance = 0.5f;
-    public float groundLevel = -0.3f;
+    public float groundLevel = -2f;
     
     private void Start()
     {
@@ -51,7 +51,8 @@ public class StartMenuScript : MonoBehaviour
 
     public GameObject GenerateGroundTile(Vector3 pos)
     {
-        GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity);
+        Vector3 posOffset = new Vector3(0, groundLevel, 0);
+        GameObject tile = Instantiate(tilePrefab, pos + posOffset, Quaternion.identity);
         tile.transform.SetParent(tiles.transform);
 
         return tile;
@@ -154,7 +155,7 @@ public class StartMenuScript : MonoBehaviour
 
     private void UpdateWithOffset()
     {
-        tiles.transform.position += cameraOffset;
+        tiles.transform.position = cameraOffset;
         groundLevel += cameraOffset.y;
 
         navMenu.DestroyPreviewPoints();

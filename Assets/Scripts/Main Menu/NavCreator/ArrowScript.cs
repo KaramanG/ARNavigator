@@ -10,7 +10,7 @@ public class ArrowScript : MonoBehaviour
     private GameObject currentNavPoint;
 
     private bool isActive;
-    private float minDistance = 0.33f;
+    public float minDistance = 0.65f;
 
     private void Awake()
     {
